@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        GameObject player = new GameObject("player");
-        GameObject enemy = new GameObject("enemy");
-        GameObject boss = new GameObject("boss");
+        GameObject player = GameObjectFactory.create("player");
+        GameObject enemy = GameObjectFactory.create("enemy");
+        GameObject boss = GameObjectFactory.create("boss");
 
         player.update();
         enemy.update();
@@ -11,7 +11,5 @@ public class Main {
 
         player.attack(enemy);
         boss.attack(player);
-
-        System.out.println("Game simulation finished.");
     }
 }
