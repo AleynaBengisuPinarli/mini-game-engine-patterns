@@ -1,40 +1,51 @@
-##  FAZ 1 – Creational Pattern: Factory Method
+1. Decorator Pattern
 
-###  Nerede Kullanıldı?
-Mini oyun motorunda GameObject (oyuncu, düşman vb.) nesnelerinin oluşturulması sürecinde kullanıldı. Önceden nesne oluşturma işlemi Main veya GameObject içinde yapılıyordu.
+## Amaç
 
----
+Decorator Pattern, nesnelere mevcut yapıyı değiştirmeden çalışma zamanında (runtime) yeni davranışlar eklemek için kullanılır. Bu sayede inheritance yerine composition kullanılarak daha esnek ve genişletilebilir bir mimari oluşturulur.
 
-###  Neden Kullanıldı?
+## Kullanım
 
-Önceki yapıda:
-- Nesne oluşturma kodu dağınıktı
-- Yeni bir GameObject türü eklemek için mevcut kodu değiştirmek gerekiyordu
-- Bu durum Open/Closed Principle (OCP) ihlaline neden oluyordu
+Bu projede Decorator Pattern şu sınıflarla uygulanmıştır:
 
-Bu sorunları çözmek için nesne oluşturma sorumluluğu tek bir merkezde toplanmalıdır.
+GameObjectComponent → temel arayüz
+Player → temel concrete component
+GameObjectDecorator → abstract decorator (wrapper sınıf)
+ShieldDecorator → somut decorator (ek özellik)
 
----
+## Çalışma Mantığı
+Decorator yapısı, bir GameObjectComponent nesnesini sararak (wrap ederek) onun davranışını genişletir. Örneğin ShieldDecorator, oyuncuya ek savunma özelliği ekler. Bu yapı sayesinde mevcut sınıflar değiştirilmeden yeni özellikler eklenebilir.
 
-###  Çözüm
+## Kazanımlar
+- Open/Closed Principle desteklenir (mevcut kod değişmeden genişler)
+- Runtime’da dinamik özellik eklenebilir
+- if-else gibi kontrol yapıları azaltılır
+- Daha modüler ve esnek yapı sağlanır
 
-Factory Method pattern kullanılarak GameObjectFactory sınıfı oluşturuldu.
+2. Adapter Pattern
 
-Bu sınıf:
-- Tüm GameObject nesnelerini üretmekten sorumlu hale geldi
-- Main sınıfındaki doğrudan nesne oluşturma kaldırıldı
+## Amaç
 
----
+Adapter Pattern, birbirine uyumsuz arayüzlere sahip sınıfların birlikte çalışmasını sağlamak için kullanılır. Özellikle legacy sistemleri yeni mimariye entegre etmek için idealdir.
 
-###  Ne Kazandım?
+## Kullanım
 
-- Kod daha düzenli ve okunabilir hale geldi
-- Nesne oluşturma merkezi bir yapıya taşındı
-- Yeni nesne türü eklemek kolaylaştı (mevcut kodu değiştirmeden)
-- SOLID prensiplerine (özellikle OCP ve SRP) daha uygun bir yapı oluştu
+Bu projede Adapter Pattern şu sınıflarla uygulanmıştır:
 
----
+LegacyEnemy → eski sistem (uyumsuz yapı)
+EnemyAdapter → adaptör sınıfı
+GameObjectComponent → hedef arayüz
 
-###  Özet
+## Çalışma Mantığı
 
-Factory Method pattern kullanılarak nesne oluşturma süreci merkezileştirildi ve sistem daha genişletilebilir hale getirildi.
+EnemyAdapter, legacy sınıfı sararak onu yeni sistemin beklediği GameObjectComponent yapısına uygun hale getirir. Böylece eski kod değiştirilmeden yeni mimariye entegre edilir.
+
+## Kazanımlar
+Legacy kod korunur (reusability)
+Backward compatibility sağlanır
+Sistem mimarisi bozulmadan genişletilir
+Entegrasyon süreci kolaylaşır
+
+## Genel Sonuç
+
+Bu fazda sistem, Structural Design Patterns kullanılarak daha esnek, genişletilebilir ve sürdürülebilir bir yapıya dönüştürülmüştür. Decorator Pattern runtime davranış eklemek için, Adapter Pattern ise legacy sistem entegrasyonu için kullanılmıştır.

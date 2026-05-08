@@ -1,15 +1,13 @@
 public class Main {
+
     public static void main(String[] args) {
 
-        GameObject player = GameObjectFactory.create("player");
-        GameObject enemy = GameObjectFactory.create("enemy");
-        GameObject boss = GameObjectFactory.create("boss");
+        GameObjectComponent player = new Player();
 
-        player.update();
-        enemy.update();
-        boss.update();
+        player = new ShieldDecorator(player);
 
-        player.attack(enemy);
-        boss.attack(player);
+        GameObject gameObject = new GameObject(player);
+
+        gameObject.update();
     }
 }

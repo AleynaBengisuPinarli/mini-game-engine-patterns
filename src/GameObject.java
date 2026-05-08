@@ -1,20 +1,12 @@
 public class GameObject {
 
-    String type;
-    int health;
-    int damage;
+    private GameObjectComponent component;
 
-    public GameObject(String type, int health, int damage) {
-        this.type = type;
-        this.health = health;
-        this.damage = damage;
+    public GameObject(GameObjectComponent component) {
+        this.component = component;
     }
 
     public void update() {
-        System.out.println(type + " is updating...");
-    }
-
-    public void attack(GameObject target) {
-        target.health -= this.damage;
+        component.update();
     }
 }
